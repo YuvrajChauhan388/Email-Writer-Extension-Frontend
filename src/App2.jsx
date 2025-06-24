@@ -21,10 +21,10 @@ import { styled } from '@mui/system';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#4a148c', // Deep purple
+      main: '#4a148c',  // Deep purple
     },
     secondary: {
-      main: '#ff6f00', // Amber
+      main: '#ff6f00',  // Amber
     },
     background: {
       default: '#f5f5f5',
@@ -86,7 +86,7 @@ function App() {
     setLoading(true);
     setError('');
     try {
-      const response = await axios.post("https://email-writer-extension-backend-5.onrender.com/api/email/generate", {
+      const response = await axios.post("http://localhost:8080/api/email/generate", {
         emailContent,
         tone
       });
@@ -97,7 +97,7 @@ function App() {
     } finally {
       setLoading(false);
     }
-  };
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -125,7 +125,7 @@ function App() {
               rows={6}
               variant="outlined"
               label="Original Email Content"
-              value={emailContent}
+              value={emailContent || ''}
               onChange={(e) => setEmailContent(e.target.value)}
               sx={{ mb: 2 }}
               InputProps={{
@@ -139,7 +139,7 @@ function App() {
             <FormControl fullWidth sx={{ mb: 2 }}>
               <InputLabel>Tone (Optional)</InputLabel>
               <Select
-                value={tone}
+                value={tone || ''}
                 label="Tone (Optional)"
                 onChange={(e) => setTone(e.target.value)}
                 sx={{
@@ -176,7 +176,7 @@ function App() {
           )}
 
           {generatedReply && (
-            <Box sx={{ mt: 4 }}>
+            <Box sx={{ mt: 4, animation: 'fadeIn 0.5s ease' }}>
               <Typography variant='h6' gutterBottom sx={{ fontWeight: 600, color: '#4a148c' }}>
                 Generated Reply:
               </Typography>
@@ -185,7 +185,7 @@ function App() {
                 multiline
                 rows={6}
                 variant="outlined"
-                value={generatedReply}
+                value={generatedReply || ''}
                 inputProps={{ readOnly: true }}
                 sx={{
                   '& .MuiOutlinedInput-root': {
