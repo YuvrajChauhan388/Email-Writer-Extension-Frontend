@@ -40,4 +40,4 @@ https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts
 
 🌐 Live Demo
 Deployed on Vercel
-🔗 Add your live URL here once deployed
+🔗 https://yuvrajchauhan388.github.io/Email-Writer-Extension-Frontend/
